@@ -33,6 +33,23 @@ namespace PawnCompatibilityGlobalAdjuster
             return new List<Pawn>(Find.CurrentMap.mapPawns.FreeColonists);
         }
 
+        /// <summary>True when b is a's lover, spouse, fiance or blood relative (checked from a's direct relations).</summary>
+        internal static bool IsLoverOrFamily(Pawn a, Pawn b)
+        {
+            List<DirectPawnRelation> rels = a.relations?.DirectRelations;
+            if (rels == null) return false;
+            for (int k = 0; k < rels.Count; k++)
+            {
+                DirectPawnRelation r = rels[k];
+                if (r.otherPawn != b) continue;
+                PawnRelationDef d = r.def;
+                if (d == PawnRelationDefOf.Lover || d == PawnRelationDefOf.Spouse || d == PawnRelationDefOf.Fiance
+                    || d.familyByBloodRelation)
+                    return true;
+            }
+            return false;
+        }
+
         internal static int PairCount(int colonistCount)
         {
             if (colonistCount < 2) return 0;
@@ -71,6 +88,8 @@ namespace PawnCompatibilityGlobalAdjuster
                 return 0;
             }
 
+            bool exempt = AutoAdjustGameComponent.Active?.exemptLoversAndFamily ?? false;
+
             int changed = 0;
             for (int i = 0; i < colonists.Count; i++)
             {
@@ -79,6 +98,7 @@ namespace PawnCompatibilityGlobalAdjuster
                     Pawn a = colonists[i];
                     Pawn b = colonists[j];
                     if (a == null || b == null || a.relations == null) continue;
+                    if (exempt && IsLoverOrFamily(a, b)) continue;
 
                     // CompatibilityWith already returns the active override (base mod
                     // postfixes it), so this is the effective current value.

@@ -47,9 +47,11 @@ Adjustments are written into the **same override store** the base mod uses, so:
 > a pair's natural compatibility, that pair simply has no override entry — which
 > is correct. Verify by reading the in-game compatibility, not the raw store.
 
-Mode, the one-shot value, the Auto toggle and the Auto target are stored as
-**global mod settings** (per user, like the base mod's slider min/max), not
-per-save.
+Mode and the one-shot value are **global mod settings** (per user). The Auto toggle,
+the Auto target and "leave lovers and family alone" are stored **per save** in a
+GameComponent; the global values are only the default for new games, and a save
+without stored values (new game, or a save from before this change) takes the
+current global values once.
 
 ## How it works (for future-you)
 

@@ -24,6 +24,7 @@ namespace PawnCompatibilityGlobalAdjuster
 
         private string adjustBuffer;
         private string autoBuffer;
+        private string saveBuffer = "0.00";
 
         public GlobalAdjusterMod(ModContentPack content) : base(content)
         {
@@ -96,18 +97,44 @@ namespace PawnCompatibilityGlobalAdjuster
             listing.GapLine();
             listing.Gap(6f);
 
-            // --- Auto mode (continuous, absolute) ---
+            // --- Auto mode, this save (live values live in the save's GameComponent) ---
+            AutoAdjustGameComponent comp = AutoAdjustGameComponent.Active;
             Text.Font = GameFont.Medium;
-            listing.Label("CompatibilityGlobal.Auto".Translate());
+            listing.Label("CompatibilityGlobal.AutoThisSave".Translate());
             Text.Font = GameFont.Small;
+            if (comp != null)
+            {
+                listing.CheckboxLabeled("CompatibilityGlobal.AutoEnable".Translate(),
+                    ref comp.autoEnabled, "CompatibilityGlobal.AutoTip".Translate());
+                listing.Gap(4f);
+                listing.Label("CompatibilityGlobal.AutoTarget".Translate(comp.autoTarget.ToString("F2")));
+                Rect saveRow = listing.GetRect(28f);
+                DrawSliderWithField(saveRow, ref comp.autoTarget, ref saveBuffer, min, max);
+                listing.CheckboxLabeled("CompatibilityGlobal.ExemptEnable".Translate(),
+                    ref comp.exemptLoversAndFamily, "CompatibilityGlobal.ExemptTip".Translate());
+                saveBuffer = comp.autoTarget.ToString("F2");
+            }
+            else
+            {
+                listing.Label("CompatibilityGlobal.AutoNoGame".Translate());
+            }
 
+            listing.Gap(10f);
+            listing.GapLine();
+            listing.Gap(6f);
+
+            // --- Auto mode, defaults for new games (global settings) ---
+            Text.Font = GameFont.Medium;
+            listing.Label("CompatibilityGlobal.AutoDefaults".Translate());
+            Text.Font = GameFont.Small;
             listing.CheckboxLabeled("CompatibilityGlobal.AutoEnable".Translate(),
-                ref Settings.autoEnabled, "CompatibilityGlobal.AutoTip".Translate());
-
+                ref Settings.autoEnabled, "CompatibilityGlobal.AutoDefaultsTip".Translate());
             listing.Gap(4f);
             listing.Label("CompatibilityGlobal.AutoTarget".Translate(Settings.autoTarget.ToString("F2")));
             Rect autoRow = listing.GetRect(28f);
             DrawSliderWithField(autoRow, ref Settings.autoTarget, ref autoBuffer, min, max);
+            listing.CheckboxLabeled("CompatibilityGlobal.ExemptEnable".Translate(),
+                ref Settings.exemptLoversAndFamily, "CompatibilityGlobal.ExemptTip".Translate());
 
             listing.Gap(14f);
 
@@ -120,6 +147,7 @@ namespace PawnCompatibilityGlobalAdjuster
                 Settings.adjustValue = 0f;
                 Settings.autoEnabled = false;
                 Settings.autoTarget = 0f;
+                Settings.exemptLoversAndFamily = false;
                 adjustBuffer = "0.00";
                 autoBuffer = "0.00";
             }
@@ -198,8 +226,8 @@ namespace PawnCompatibilityGlobalAdjuster
                 Type dialogType = AccessTools.TypeByName("CompatibilityEditor.Dialog_CompatibilityEditor");
                 if (dialogType == null)
                 {
-                    Log.Error("[CompatibilityGlobalAdjuster] Could not find Dialog_CompatibilityEditor. " +
-                              "Is 'Pawn Compatibility Editor' installed and loaded before this mod?");
+                    Log.Warning("[CompatibilityGlobalAdjuster] Could not find Dialog_CompatibilityEditor. " +
+                                "Is 'Pawn Compatibility Editor' installed and loaded before this mod? The in-dialog slider is not added.");
                     return;
                 }
 

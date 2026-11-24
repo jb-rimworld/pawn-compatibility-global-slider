@@ -66,7 +66,8 @@ namespace PawnCompatibilityGlobalAdjuster
             // runtime, but be defensive) — default to Relative.
             GlobalAdjusterSettings settings = GlobalAdjusterMod.Settings;
             AdjustMode mode = settings != null ? settings.mode : AdjustMode.Relative;
-            bool autoOn = settings != null && settings.autoEnabled;
+            AutoAdjustGameComponent comp = AutoAdjustGameComponent.Active;
+            bool autoOn = comp != null && comp.autoEnabled;
 
             // Title
             Text.Font = GameFont.Small;
@@ -83,7 +84,7 @@ namespace PawnCompatibilityGlobalAdjuster
                     inner.height - (titleRect.yMax - inner.y) - 6f);
                 GUI.color = new Color(0.9f, 0.85f, 0.6f);
                 Widgets.Label(noticeRect,
-                    "CompatibilityGlobal.AutoActiveNotice".Translate(settings.autoTarget.ToString("F2")));
+                    "CompatibilityGlobal.AutoActiveNotice".Translate(comp.autoTarget.ToString("F2")));
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.UpperLeft;
                 GUI.color = Color.white;

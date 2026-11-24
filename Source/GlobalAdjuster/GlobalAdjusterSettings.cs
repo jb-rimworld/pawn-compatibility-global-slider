@@ -16,11 +16,17 @@ namespace PawnCompatibilityGlobalAdjuster
         /// <summary>The one-shot value used by the "Apply now" / in-dialog button.</summary>
         public float adjustValue = 0f;
 
-        /// <summary>When true, a GameComponent continuously forces every pair to <see cref="autoTarget"/>.</summary>
+        /// <summary>
+        /// DEFAULT for new games (and, once, for saves that never had a per-save value): whether Auto mode
+        /// starts enabled. The live value lives per save in <see cref="AutoAdjustGameComponent"/>.
+        /// </summary>
         public bool autoEnabled = false;
 
-        /// <summary>The absolute value auto mode forces every pair to.</summary>
+        /// <summary>DEFAULT for new games: the absolute value Auto mode forces every pair to.</summary>
         public float autoTarget = 0f;
+
+        /// <summary>DEFAULT for new games: Auto and Apply skip pairs that are lovers, spouses, fiances or blood family.</summary>
+        public bool exemptLoversAndFamily = false;
 
         public override void ExposeData()
         {
@@ -29,6 +35,7 @@ namespace PawnCompatibilityGlobalAdjuster
             Scribe_Values.Look(ref adjustValue, "adjustValue", 0f);
             Scribe_Values.Look(ref autoEnabled, "autoEnabled", false);
             Scribe_Values.Look(ref autoTarget, "autoTarget", 0f);
+            Scribe_Values.Look(ref exemptLoversAndFamily, "exemptLoversAndFamily", false);
         }
     }
 }

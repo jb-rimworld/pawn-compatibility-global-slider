@@ -36,7 +36,7 @@
     <!-- Automatischer Modus -->
     <CompatibilityGlobal.Auto>Automatischer Modus (kontinuierlich)</CompatibilityGlobal.Auto>
     <CompatibilityGlobal.AutoEnable>Jedes Paar kontinuierlich auf den Zielwert zwingen</CompatibilityGlobal.AutoEnable>
-    <CompatibilityGlobal.AutoTip>Wenn aktiviert, wird jedes Kolonisten-Paar kontinuierlich auf den Zielwert gesetzt (absolut). Neue Kolonisten - Rekruten, Geburten, befreite Gefangene - werden innerhalb weniger Sekunden automatisch erfasst. Hinweis: Bei aktivem Auto-Modus werden manuelle Einzeländerungen beim nächsten Durchlauf überschrieben, daher wird der Anwenden-Knopf im Dialog durch einen Hinweis ersetzt.</CompatibilityGlobal.AutoTip>
+    <CompatibilityGlobal.AutoTip>In diesem Spielstand wird, wenn aktiviert, jedes Kolonisten-Paar kontinuierlich auf den Zielwert gesetzt (absolut). Neue Kolonisten - Rekruten, Geburten, befreite Gefangene - werden innerhalb weniger Sekunden automatisch erfasst. Hinweis: Bei aktivem Auto-Modus werden manuelle Einzeländerungen beim nächsten Durchlauf überschrieben, daher wird der Anwenden-Knopf im Dialog durch einen Hinweis ersetzt.</CompatibilityGlobal.AutoTip>
     <CompatibilityGlobal.AutoTarget>Automatischer Zielwert: {0}</CompatibilityGlobal.AutoTarget>
     <CompatibilityGlobal.AutoActiveNotice>Automatischer Modus aktiv - jedes Kolonisten-Paar wird auf {0} gesetzt. Deaktiviere Auto in den Mod-Einstellungen, um manuell zu bearbeiten.</CompatibilityGlobal.AutoActiveNotice>
 
@@ -46,4 +46,12 @@
     <!-- Fehler -->
     <CompatibilityGlobal.NoStore>Override-Speicher des Pawn Compatibility Editor nicht gefunden - globale Anpassung nicht möglich.</CompatibilityGlobal.NoStore>
     <CompatibilityGlobal.NotEnough>Mindestens zwei Kolonisten nötig, um eine globale Anpassung anzuwenden.</CompatibilityGlobal.NotEnough>
+
+    <!-- Auto-Modus pro Spielstand -->
+    <CompatibilityGlobal.AutoThisSave>Auto-Modus: dieser Spielstand</CompatibilityGlobal.AutoThisSave>
+    <CompatibilityGlobal.AutoDefaults>Auto-Modus: Standard für neue Spiele</CompatibilityGlobal.AutoDefaults>
+    <CompatibilityGlobal.AutoDefaultsTip>Nur die Startwerte für neue Spiele. Jeder Spielstand behält seine eigene Auto-Einstellung; Änderungen hier berühren vorhandene Spielstände nicht.</CompatibilityGlobal.AutoDefaultsTip>
+    <CompatibilityGlobal.AutoNoGame>Lade ein Spiel, um den Auto-Modus für diesen Spielstand zu ändern.</CompatibilityGlobal.AutoNoGame>
+    <CompatibilityGlobal.ExemptEnable>Liebespaare, Ehepartner, Verlobte und Blutsverwandte auslassen</CompatibilityGlobal.ExemptEnable>
+    <CompatibilityGlobal.ExemptTip>Paare, die Liebespaar, Ehepartner, verlobt oder blutsverwandt sind, überspringen Auto und Anwenden. Bereits geänderte Paare bleiben, wie sie sind.</CompatibilityGlobal.ExemptTip>
 </LanguageData>

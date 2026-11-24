@@ -36,7 +36,7 @@
     <!-- Auto mode -->
     <CompatibilityGlobal.Auto>Auto mode (continuous)</CompatibilityGlobal.Auto>
     <CompatibilityGlobal.AutoEnable>Continuously force every pair to the target value</CompatibilityGlobal.AutoEnable>
-    <CompatibilityGlobal.AutoTip>While enabled, every colonist pair is continuously set to the target value (absolute). New colonists - recruits, births, freed prisoners - are caught automatically within a few seconds. Note: while Auto is on, manual per-pair edits are re-asserted on the next pass, so the in-dialog Apply is replaced with a notice.</CompatibilityGlobal.AutoTip>
+    <CompatibilityGlobal.AutoTip>In this save, while enabled, every colonist pair is continuously set to the target value (absolute). New colonists - recruits, births, freed prisoners - are caught automatically within a few seconds. Note: while Auto is on, manual per-pair edits are re-asserted on the next pass, so the in-dialog Apply is replaced with a notice.</CompatibilityGlobal.AutoTip>
     <CompatibilityGlobal.AutoTarget>Auto target value: {0}</CompatibilityGlobal.AutoTarget>
     <CompatibilityGlobal.AutoActiveNotice>Auto mode active - every colonist pair is being set to {0}. Disable Auto in the mod settings to edit manually.</CompatibilityGlobal.AutoActiveNotice>
 
@@ -46,4 +46,12 @@
     <!-- Errors -->
     <CompatibilityGlobal.NoStore>Pawn Compatibility Editor override store not found - cannot apply global adjustment.</CompatibilityGlobal.NoStore>
     <CompatibilityGlobal.NotEnough>Need at least two colonists to apply a global adjustment.</CompatibilityGlobal.NotEnough>
+
+    <!-- Auto mode per save (since the per-save change) -->
+    <CompatibilityGlobal.AutoThisSave>Auto mode: this save</CompatibilityGlobal.AutoThisSave>
+    <CompatibilityGlobal.AutoDefaults>Auto mode: defaults for new games</CompatibilityGlobal.AutoDefaults>
+    <CompatibilityGlobal.AutoDefaultsTip>Only the starting values for new games. A save keeps its own Auto setting; changing this does not touch saves you already have.</CompatibilityGlobal.AutoDefaultsTip>
+    <CompatibilityGlobal.AutoNoGame>Load a game to change Auto mode for that save.</CompatibilityGlobal.AutoNoGame>
+    <CompatibilityGlobal.ExemptEnable>Leave lovers, spouses, fiances and blood family alone</CompatibilityGlobal.ExemptEnable>
+    <CompatibilityGlobal.ExemptTip>Pairs that are lovers, spouses, fiances or related by blood are skipped by Auto and by Apply. Pairs already changed stay as they are.</CompatibilityGlobal.ExemptTip>
 </LanguageData>
