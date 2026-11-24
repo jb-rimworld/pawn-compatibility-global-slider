@@ -92,3 +92,7 @@ Reference paths in the `.csproj` point at the RimWorld managed assemblies and
 the Harmony workshop DLL via `$(HOME)`; adjust if your install moves.
 
 Requires: Harmony, Pawn Compatibility Editor. Load this mod **after** both.
+
+## Licence
+
+MIT, see `LICENSE`.
