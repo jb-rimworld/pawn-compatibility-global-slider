@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <BaseIntermediateOutputPath>obj17/</BaseIntermediateOutputPath>
         <DefineConstants>$(DefineConstants);RW17</DefineConstants>
         <OutputType>Library</OutputType>
         <RootNamespace>PawnCompatibilityGlobalAdjuster</RootNamespace>
@@ -31,5 +30,19 @@
         <Reference Include="Waylith.UnityCompat"><HintPath>$(HOME)/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorld.app/Contents/MacOS/Waylith.UnityCompat.dll</HintPath><Private>False</Private></Reference>
         <Reference Include="0Harmony"><HintPath>$(HOME)/Library/Application Support/Steam/steamapps/workshop/content/294100/2009463077/1.7/Assemblies/0Harmony.dll</HintPath><Private>False</Private></Reference>
     </ItemGroup>
+
+    <!-- Test builds only (tools/jbmod passes -p:JBTests=true): the in-game suites in GlobalAdjusterTests.cs use JB Framework's test harness.
+         The release build never defines JB_TESTS and never references the framework (tools/release.py scans the DLL). -->
+    <PropertyGroup Condition="'$(JBTests)' == 'true'">
+        <DefineConstants>$(DefineConstants);JB_TESTS</DefineConstants>
+        <JBFrameworkRoot>$([MSBuild]::NormalizeDirectory('$(MSBuildProjectDirectory)/../../../JBFramework'))</JBFrameworkRoot>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(JBTests)' == 'true'">
+        <Reference Include="JBFramework"><HintPath>$(JBFrameworkRoot)1.7/Assemblies/JBFramework.dll</HintPath><Private>False</Private></Reference>
+        <Reference Include="JBFramework.Testing"><HintPath>$(JBFrameworkRoot)TestMod/1.7/Assemblies/JBFramework.Testing.dll</HintPath><Private>False</Private></Reference>
+    </ItemGroup>
+    <Target Name="JBReleaseGuard" BeforeTargets="CoreCompile;BeforeBuild">
+        <Error Condition="'$(JBRelease)' == 'true' and '$(JBTests)' == 'true'" Text="Release build with JBTests=true: test code must never ship." />
+    </Target>
     <ItemGroup><Compile Remove="obj17/**" /><Compile Remove="obj/**" /></ItemGroup>
 </Project>

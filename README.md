@@ -25,7 +25,7 @@ and rounded to 0.01.
 ### Auto mode (continuous, absolute)
 
 Enable **Auto mode** in the settings and pick a target. A lightweight
-GameComponent then re-asserts that target for every colonist pair roughly every
+tick hook then re-asserts that target for every colonist pair roughly every
 4 seconds, so **new colonists** (recruits, births, freed prisoners) are snapped
 to the target automatically. While Auto is on:
 
@@ -48,8 +48,8 @@ Adjustments are written into the **same override store** the base mod uses, so:
 > is correct. Verify by reading the in-game compatibility, not the raw store.
 
 Mode and the one-shot value are **global mod settings** (per user). The Auto toggle,
-the Auto target and "leave lovers and family alone" are stored **per save** in a
-GameComponent; the global values are only the default for new games, and a save
+the Auto target and "leave lovers and family alone" are stored **per save** in their own
+`pcgaAuto` node inside the save (not a GameComponent, so removing the mod is silent); the global values are only the default for new games, and a save
 without stored values (new game, or a save from before this change) takes the
 current global values once.
 
@@ -68,8 +68,12 @@ current global values once.
   that renders the settings page, plus the separate
   `[StaticConstructorOnStartup] GlobalAdjusterStartup` that wires up the manual
   Harmony patches (the dialog type is internal, so it's patched by name).
-- `AutoAdjustGameComponent.cs` – `GameComponent` (auto-instantiated, no Def)
-  whose throttled `GameComponentTick` forces every pair to the Auto target.
+- `AutoAdjustState.cs` – the per-save Auto values. Four small Harmony hooks
+  (`Game.InitNewGame`, `Game.FinalizeInit`, `Game.ExposeSmallComponents`,
+  `TickManager.DoSingleTick`) create, seed, save/load and tick it. The throttled
+  tick forces every pair to the Auto target.
+- `GlobalAdjusterTests.cs` – in-game suites, compiled only into test builds
+  (`JBFramework/tools/jbmod PawnCompatibilityGlobalAdjuster test ...`, header of the file).
 - `Patch_DialogGlobalSlider.cs` – Harmony prefix on `Dialog_CompatibilityEditor.
   DoWindowContents` draws the mode-aware global strip and shifts the original
   content down; postfix on `InitialSize` grows the window to fit.

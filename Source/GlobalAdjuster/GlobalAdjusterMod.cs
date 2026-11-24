@@ -98,7 +98,7 @@ namespace PawnCompatibilityGlobalAdjuster
             listing.Gap(6f);
 
             // --- Auto mode, this save (live values live in the save's GameComponent) ---
-            AutoAdjustGameComponent comp = AutoAdjustGameComponent.Active;
+            AutoAdjustState comp = AutoAdjustState.Active;
             Text.Font = GameFont.Medium;
             listing.Label("CompatibilityGlobal.AutoThisSave".Translate());
             Text.Font = GameFont.Small;
@@ -220,6 +220,9 @@ namespace PawnCompatibilityGlobalAdjuster
         static GlobalAdjusterStartup()
         {
             var harmony = new Harmony("juliusberger00.pawncompatibilityglobaladjuster");
+
+            // Per-save Auto values and the Auto tick: independent of the base mod, so the values survive even while it is missing.
+            AutoAdjustState.Install(harmony);
 
             try
             {

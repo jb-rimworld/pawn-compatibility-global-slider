@@ -2,6 +2,7 @@
 <ModMetaData>
     <name>Pawn Compatibility Editor - Global Slider</name>
     <author>juliusberger00</author>
+    <modVersion>1.1.0</modVersion>
     <packageId>juliusberger00.pawncompatibilityglobaladjuster</packageId>
     <supportedVersions>
         <li>1.6</li>
@@ -30,6 +31,10 @@ Pick the mode in Options &gt; Mod Settings &gt; Compatibility Global Adjuster. T
 
 Tick "Continuously force every pair to the target value" in the settings and choose a target. About every 250 ticks (roughly 4 seconds at normal speed) the mod sets every pair to that target again, so recruits, births and freed prisoners get fixed without you lifting a finger. Pairs that already match are skipped, so it is cheap.
 
+Auto mode belongs to the save. The "defaults for new games" in the settings only decide how a new colony starts, and a save that has no values yet (an old one) takes the current default once. After that every save keeps its own switch and target, so two colonies can run different values.
+
+An optional switch leaves lovers, spouses, fiances and blood relatives (siblings and cousins too) alone. It applies to Auto and to the manual Apply button; pairs you already changed stay as they are.
+
 While Auto is on, the dialog's Apply button is replaced by a notice. Manual per-pair edits would be overwritten on the next pass anyway, so the mod saves you the disappointment.
 
 == WHERE THE NUMBERS LIVE ==
@@ -37,15 +42,15 @@ While Auto is on, the dialog's Apply button is replaced by a notice. Manual per-
 - Adjustments go into the same override store the base mod uses and are saved with your game.
 - They stack with your per-pair edits, and the base mod's per-pair Reset button still restores the original game-generated value.
 - If you set a pair to exactly its natural value, the base mod simply drops the override. That is correct, not a bug. Check the in-game number, not the raw store.
-- Mode, values and Auto settings are global per user (like the base mod's slider limits), not per save. The compatibility overrides themselves are per save.
+- Mode and the one-shot value are global per user (like the base mod's slider limits). Auto mode, its target and the exemption switch are saved with each save. The compatibility overrides themselves are per save too.
 - Other maps, prisoners and guests are not touched.
 
 == COMPATIBILITY ==
 
-- RimWorld 1.6 and 1.7.
+- Built and tested on RimWorld 1.7. The 1.6 build is best effort and untested.
 - Requires Harmony and Pawn Compatibility Editor by Jomar (the 1.7 version works). Load this mod after both.
-- The mod finds the base mod's dialog and store by name. If a future update renames them, you get an error in the log instead of a crash, and the slider politely stops showing up.
-- Adds no defs and writes nothing to the save of its own, so adding or removing it mid-save should not hurt.
+- The mod finds the base mod's dialog and store by name. If a future update renames them, or the base mod is missing, you get a yellow warning in the log instead of a crash, and the slider politely stops showing up.
+- Adds no defs. It writes one small node of its own into the save (Auto switch, target, exemption). That node is not a game component, so removing the mod mid-save leaves no error; adding it later starts the save from your defaults.
 
 All credit for the actual compatibility editor goes to Jomar. This is just the lever on top.
 
@@ -65,6 +70,7 @@ This mod was built with the help of Claude Code. Copyright stays with Julius Ber
         <li>
             <packageId>jomar.pawncompatibilityeditor</packageId>
             <displayName>Pawn Compatibility Editor</displayName>
+            <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=3692227939</steamWorkshopUrl>
         </li>
     </modDependencies>
     <loadAfter>

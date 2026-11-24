@@ -18,7 +18,7 @@ namespace PawnCompatibilityGlobalAdjuster
 
         /// <summary>
         /// DEFAULT for new games (and, once, for saves that never had a per-save value): whether Auto mode
-        /// starts enabled. The live value lives per save in <see cref="AutoAdjustGameComponent"/>.
+        /// starts enabled. The live value lives per save in <see cref="AutoAdjustState"/>.
         /// </summary>
         public bool autoEnabled = false;
 

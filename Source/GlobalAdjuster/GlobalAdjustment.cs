@@ -33,18 +33,16 @@ namespace PawnCompatibilityGlobalAdjuster
             return new List<Pawn>(Find.CurrentMap.mapPawns.FreeColonists);
         }
 
-        /// <summary>True when b is a's lover, spouse, fiance or blood relative (checked from a's direct relations).</summary>
+        /// <summary>
+        /// True when b is a's lover, spouse, fiance or blood relative. Uses the game's own relation lookup, which also returns the IMPLIED
+        /// relations (siblings, cousins, grandparents ...): those are never stored in DirectRelations, only parents, children and partners are.
+        /// </summary>
         internal static bool IsLoverOrFamily(Pawn a, Pawn b)
         {
-            List<DirectPawnRelation> rels = a.relations?.DirectRelations;
-            if (rels == null) return false;
-            for (int k = 0; k < rels.Count; k++)
+            if (a == null || b == null || a.relations == null) return false;
+            foreach (PawnRelationDef d in a.GetRelations(b))
             {
-                DirectPawnRelation r = rels[k];
-                if (r.otherPawn != b) continue;
-                PawnRelationDef d = r.def;
-                if (d == PawnRelationDefOf.Lover || d == PawnRelationDefOf.Spouse || d == PawnRelationDefOf.Fiance
-                    || d.familyByBloodRelation)
+                if (d == PawnRelationDefOf.Lover || d == PawnRelationDefOf.Spouse || d == PawnRelationDefOf.Fiance || d.familyByBloodRelation)
                     return true;
             }
             return false;
@@ -88,7 +86,7 @@ namespace PawnCompatibilityGlobalAdjuster
                 return 0;
             }
 
-            bool exempt = AutoAdjustGameComponent.Active?.exemptLoversAndFamily ?? false;
+            bool exempt = AutoAdjustState.Active?.exemptLoversAndFamily ?? false;
 
             int changed = 0;
             for (int i = 0; i < colonists.Count; i++)

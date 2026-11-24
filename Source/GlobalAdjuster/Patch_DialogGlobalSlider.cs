@@ -66,7 +66,7 @@ namespace PawnCompatibilityGlobalAdjuster
             // runtime, but be defensive) — default to Relative.
             GlobalAdjusterSettings settings = GlobalAdjusterMod.Settings;
             AdjustMode mode = settings != null ? settings.mode : AdjustMode.Relative;
-            AutoAdjustGameComponent comp = AutoAdjustGameComponent.Active;
+            AutoAdjustState comp = AutoAdjustState.Active;
             bool autoOn = comp != null && comp.autoEnabled;
 
             // Title
