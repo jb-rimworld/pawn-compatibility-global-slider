@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Einstellungsmenü -->
+    <GlobalAdjuster.SettingsCategory>Globale Kompatibilitätsanpassung</GlobalAdjuster.SettingsCategory>
+
+    <!-- Dialog-Streifen + geteilt -->
+    <CompatibilityGlobal.Title>Globale Anpassung (gesamte Fraktion)</CompatibilityGlobal.Title>
+
+    <!-- Modus -->
+    <CompatibilityGlobal.Mode>Anpassungsmodus</CompatibilityGlobal.Mode>
+    <CompatibilityGlobal.ModeRelative>Relativ (jedes Paar um einen Betrag verschieben)</CompatibilityGlobal.ModeRelative>
+    <CompatibilityGlobal.ModeAbsolute>Absolut (jedes Paar auf einen Wert setzen)</CompatibilityGlobal.ModeAbsolute>
+    <CompatibilityGlobal.RelativeTip>Im relativen Modus wird der gewählte Betrag zur aktuellen Kompatibilität jedes Paares addiert. Positiv verbessert, negativ verschlechtert. Kann mehrfach angewendet werden und stapelt sich.</CompatibilityGlobal.RelativeTip>
+    <CompatibilityGlobal.AbsoluteTip>Im absoluten Modus wird die Kompatibilität jedes Paares auf genau den gewählten Wert gesetzt, unabhängig vom aktuellen Wert.</CompatibilityGlobal.AbsoluteTip>
+    <CompatibilityGlobal.ShiftByLabel>Jedes Paar verschieben um: {0}</CompatibilityGlobal.ShiftByLabel>
+    <CompatibilityGlobal.SetToLabel>Jedes Paar setzen auf: {0}</CompatibilityGlobal.SetToLabel>
+
+    <!-- Relative Anwendung (Altschlüssel, wiederverwendet) -->
+    <CompatibilityGlobal.Apply>Auf alle Kolonisten anwenden</CompatibilityGlobal.Apply>
+    <CompatibilityGlobal.ApplyTip>Addiert den Schieberegler-Wert zur aktuellen Kompatibilität jedes Kolonisten-Paares deiner Fraktion. Positiv verbessert, negativ verschlechtert. Werte werden auf das eingestellte Min/Max begrenzt. Stapelt sich mit Einzel-Overrides und kann mehrfach angewendet werden.</CompatibilityGlobal.ApplyTip>
+    <CompatibilityGlobal.SliderTip>Um wie viel die Kompatibilität jedes Kolonisten-Paares verschoben wird. 0 = keine Änderung.</CompatibilityGlobal.SliderTip>
+    <CompatibilityGlobal.Confirm>Kompatibilität aller {0} Kolonisten-Paare um {1} verschieben?</CompatibilityGlobal.Confirm>
+    <CompatibilityGlobal.Done>Kompatibilität von {0} Kolonisten-Paaren um {1} verschoben.</CompatibilityGlobal.Done>
+
+    <!-- Absolute Anwendung -->
+    <CompatibilityGlobal.ApplyAbsolute>Auf alle Kolonisten setzen</CompatibilityGlobal.ApplyAbsolute>
+    <CompatibilityGlobal.ApplyTipAbsolute>Setzt die Kompatibilität jedes Kolonisten-Paares deiner Fraktion auf genau den Schieberegler-Wert. Auf das eingestellte Min/Max begrenzt. Der Einzel-Zurücksetzen-Knopf des Basis-Mods stellt weiterhin den Originalwert wieder her.</CompatibilityGlobal.ApplyTipAbsolute>
+    <CompatibilityGlobal.SliderTipAbsolute>Der genaue Kompatibilitätswert, auf den jedes Kolonisten-Paar gesetzt wird.</CompatibilityGlobal.SliderTipAbsolute>
+    <CompatibilityGlobal.ConfirmAbsolute>Kompatibilität aller {0} Kolonisten-Paare auf {1} setzen?</CompatibilityGlobal.ConfirmAbsolute>
+    <CompatibilityGlobal.DoneAbsolute>Kompatibilität von {0} Kolonisten-Paaren auf {1} gesetzt.</CompatibilityGlobal.DoneAbsolute>
+
+    <!-- Einstellungen: jetzt anwenden -->
+    <CompatibilityGlobal.ApplyNow>Jetzt anwenden</CompatibilityGlobal.ApplyNow>
+    <CompatibilityGlobal.LoadGameFirst>Lade zuerst ein Spiel - der Kompatibilitäts-Speicher existiert nur in einem laufenden Spiel.</CompatibilityGlobal.LoadGameFirst>
+
+    <!-- Automatischer Modus -->
+    <CompatibilityGlobal.Auto>Automatischer Modus (kontinuierlich)</CompatibilityGlobal.Auto>
+    <CompatibilityGlobal.AutoEnable>Jedes Paar kontinuierlich auf den Zielwert zwingen</CompatibilityGlobal.AutoEnable>
+    <CompatibilityGlobal.AutoTip>Wenn aktiviert, wird jedes Kolonisten-Paar kontinuierlich auf den Zielwert gesetzt (absolut). Neue Kolonisten - Rekruten, Geburten, befreite Gefangene - werden innerhalb weniger Sekunden automatisch erfasst. Hinweis: Bei aktivem Auto-Modus werden manuelle Einzeländerungen beim nächsten Durchlauf überschrieben, daher wird der Anwenden-Knopf im Dialog durch einen Hinweis ersetzt.</CompatibilityGlobal.AutoTip>
+    <CompatibilityGlobal.AutoTarget>Automatischer Zielwert: {0}</CompatibilityGlobal.AutoTarget>
+    <CompatibilityGlobal.AutoActiveNotice>Automatischer Modus aktiv - jedes Kolonisten-Paar wird auf {0} gesetzt. Deaktiviere Auto in den Mod-Einstellungen, um manuell zu bearbeiten.</CompatibilityGlobal.AutoActiveNotice>
+
+    <!-- Zurücksetzen -->
+    <CompatibilityGlobal.ResetDefaults>Auf Standard zurücksetzen</CompatibilityGlobal.ResetDefaults>
+
+    <!-- Fehler -->
+    <CompatibilityGlobal.NoStore>Override-Speicher des Pawn Compatibility Editor nicht gefunden - globale Anpassung nicht möglich.</CompatibilityGlobal.NoStore>
+    <CompatibilityGlobal.NotEnough>Mindestens zwei Kolonisten nötig, um eine globale Anpassung anzuwenden.</CompatibilityGlobal.NotEnough>
+</LanguageData>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <!-- Settings menu -->
+    <GlobalAdjuster.SettingsCategory>Compatibility Global Adjuster</GlobalAdjuster.SettingsCategory>
+
+    <!-- In-dialog strip + shared -->
+    <CompatibilityGlobal.Title>Global adjustment (whole faction)</CompatibilityGlobal.Title>
+
+    <!-- Mode -->
+    <CompatibilityGlobal.Mode>Adjustment mode</CompatibilityGlobal.Mode>
+    <CompatibilityGlobal.ModeRelative>Relative (shift every pair by an amount)</CompatibilityGlobal.ModeRelative>
+    <CompatibilityGlobal.ModeAbsolute>Absolute (set every pair to a value)</CompatibilityGlobal.ModeAbsolute>
+    <CompatibilityGlobal.RelativeTip>Relative mode adds the chosen amount to each pair's current compatibility. Positive improves, negative worsens. Can be applied repeatedly to stack.</CompatibilityGlobal.RelativeTip>
+    <CompatibilityGlobal.AbsoluteTip>Absolute mode sets every pair's compatibility to exactly the chosen value, ignoring their current value.</CompatibilityGlobal.AbsoluteTip>
+    <CompatibilityGlobal.ShiftByLabel>Shift every pair by: {0}</CompatibilityGlobal.ShiftByLabel>
+    <CompatibilityGlobal.SetToLabel>Set every pair to: {0}</CompatibilityGlobal.SetToLabel>
+
+    <!-- Relative apply (legacy keys, reused) -->
+    <CompatibilityGlobal.Apply>Shift all colonists</CompatibilityGlobal.Apply>
+    <CompatibilityGlobal.ApplyTip>Add the slider amount to the current compatibility of every pair of colonists in your faction. Positive improves, negative worsens. Values are clamped to the configured min/max. This stacks with per-pair overrides and can be applied multiple times.</CompatibilityGlobal.ApplyTip>
+    <CompatibilityGlobal.SliderTip>How much to shift every colonist pair's compatibility. 0 = no change.</CompatibilityGlobal.SliderTip>
+    <CompatibilityGlobal.Confirm>Shift the compatibility of all {0} colonist pairs by {1}?</CompatibilityGlobal.Confirm>
+    <CompatibilityGlobal.Done>Shifted compatibility for {0} colonist pairs by {1}.</CompatibilityGlobal.Done>
+
+    <!-- Absolute apply -->
+    <CompatibilityGlobal.ApplyAbsolute>Set all colonists</CompatibilityGlobal.ApplyAbsolute>
+    <CompatibilityGlobal.ApplyTipAbsolute>Set the compatibility of every pair of colonists in your faction to exactly the slider value. Clamped to the configured min/max. The base mod's per-pair Reset still restores the original value.</CompatibilityGlobal.ApplyTipAbsolute>
+    <CompatibilityGlobal.SliderTipAbsolute>The exact compatibility value every colonist pair will be set to.</CompatibilityGlobal.SliderTipAbsolute>
+    <CompatibilityGlobal.ConfirmAbsolute>Set the compatibility of all {0} colonist pairs to {1}?</CompatibilityGlobal.ConfirmAbsolute>
+    <CompatibilityGlobal.DoneAbsolute>Set compatibility of {0} colonist pairs to {1}.</CompatibilityGlobal.DoneAbsolute>
+
+    <!-- Settings: apply-now -->
+    <CompatibilityGlobal.ApplyNow>Apply now</CompatibilityGlobal.ApplyNow>
+    <CompatibilityGlobal.LoadGameFirst>Load a game first - the compatibility store only exists in an active game.</CompatibilityGlobal.LoadGameFirst>
+
+    <!-- Auto mode -->
+    <CompatibilityGlobal.Auto>Auto mode (continuous)</CompatibilityGlobal.Auto>
+    <CompatibilityGlobal.AutoEnable>Continuously force every pair to the target value</CompatibilityGlobal.AutoEnable>
+    <CompatibilityGlobal.AutoTip>While enabled, every colonist pair is continuously set to the target value (absolute). New colonists - recruits, births, freed prisoners - are caught automatically within a few seconds. Note: while Auto is on, manual per-pair edits are re-asserted on the next pass, so the in-dialog Apply is replaced with a notice.</CompatibilityGlobal.AutoTip>
+    <CompatibilityGlobal.AutoTarget>Auto target value: {0}</CompatibilityGlobal.AutoTarget>
+    <CompatibilityGlobal.AutoActiveNotice>Auto mode active - every colonist pair is being set to {0}. Disable Auto in the mod settings to edit manually.</CompatibilityGlobal.AutoActiveNotice>
+
+    <!-- Reset -->
+    <CompatibilityGlobal.ResetDefaults>Reset to defaults</CompatibilityGlobal.ResetDefaults>
+
+    <!-- Errors -->
+    <CompatibilityGlobal.NoStore>Pawn Compatibility Editor override store not found - cannot apply global adjustment.</CompatibilityGlobal.NoStore>
+    <CompatibilityGlobal.NotEnough>Need at least two colonists to apply a global adjustment.</CompatibilityGlobal.NotEnough>
+</LanguageData>

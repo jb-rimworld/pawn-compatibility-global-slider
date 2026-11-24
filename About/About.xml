@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+    <name>Pawn Compatibility Editor - Global Slider</name>
+    <author>juliusberger00</author>
+    <packageId>juliusberger00.pawncompatibilityglobaladjuster</packageId>
+    <supportedVersions>
+        <li>1.6</li>
+        <li>1.7</li>
+    </supportedVersions>
+    <description>Add-on for "Pawn Compatibility Editor" by Jomar.
+
+Jomar's editor lets you fix colonist chemistry one pair at a time. With 12 colonists that is 66 pairs. With 30 it is 435. This add-on exists because nobody has the patience for that, the author included.
+
+It bolts a global slider onto the top of the base mod's compatibility dialog and applies it to every pair of free colonists in one click.
+
+== WHAT IT DOES ==
+
+- Adds a "Global adjustment" strip above the normal editor: slider, number field, one button, one confirmation prompt.
+- Works on every pair of free colonists on the map you are currently looking at. You need at least two of them. Yes, really.
+- The slider range is whatever min/max you set in the base mod's settings. Results are clamped to it and rounded to 0.01.
+
+== MODES ==
+
+- Relative: adds the chosen amount to each pair's current compatibility. Positive improves, negative worsens. Press it twice and it happens twice.
+- Absolute: sets every pair to exactly the chosen value and ignores what was there. Zero is a perfectly valid target, if you want a colony of strangers.
+
+Pick the mode in Options &gt; Mod Settings &gt; Compatibility Global Adjuster. The dialog follows the setting. The settings page also has an "Apply now" button (needs a loaded game) and a "Reset to defaults" button, for when you regret everything.
+
+== AUTO MODE ==
+
+Tick "Continuously force every pair to the target value" in the settings and choose a target. About every 250 ticks (roughly 4 seconds at normal speed) the mod sets every pair to that target again, so recruits, births and freed prisoners get fixed without you lifting a finger. Pairs that already match are skipped, so it is cheap.
+
+While Auto is on, the dialog's Apply button is replaced by a notice. Manual per-pair edits would be overwritten on the next pass anyway, so the mod saves you the disappointment.
+
+== WHERE THE NUMBERS LIVE ==
+
+- Adjustments go into the same override store the base mod uses and are saved with your game.
+- They stack with your per-pair edits, and the base mod's per-pair Reset button still restores the original game-generated value.
+- If you set a pair to exactly its natural value, the base mod simply drops the override. That is correct, not a bug. Check the in-game number, not the raw store.
+- Mode, values and Auto settings are global per user (like the base mod's slider limits), not per save. The compatibility overrides themselves are per save.
+- Other maps, prisoners and guests are not touched.
+
+== COMPATIBILITY ==
+
+- RimWorld 1.6 and 1.7.
+- Requires Harmony and Pawn Compatibility Editor by Jomar (the 1.7 version works). Load this mod after both.
+- The mod finds the base mod's dialog and store by name. If a future update renames them, you get an error in the log instead of a crash, and the slider politely stops showing up.
+- Adds no defs and writes nothing to the save of its own, so adding or removing it mid-save should not hurt.
+
+All credit for the actual compatibility editor goes to Jomar. This is just the lever on top.
+
+== KEYWORDS ==
+
+romance, love, relationships, marriage, social, bulk edit, quality of life, QoL, cheat, matchmaking
+
+== TRANSPARENCY ==
+
+This mod was built with the help of Claude Code. Copyright stays with Julius Berger. The code is free for the taking, do whatever you like with it. Credit and a mention are welcome, but nobody will chase you for them.</description>
+    <modDependencies>
+        <li>
+            <packageId>brrainz.harmony</packageId>
+            <displayName>Harmony</displayName>
+            <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077</steamWorkshopUrl>
+        </li>
+        <li>
+            <packageId>jomar.pawncompatibilityeditor</packageId>
+            <displayName>Pawn Compatibility Editor</displayName>
+        </li>
+    </modDependencies>
+    <loadAfter>
+        <li>brrainz.harmony</li>
+        <li>ludeon.rimworld</li>
+        <li>jomar.pawncompatibilityeditor</li>
+    </loadAfter>
+</ModMetaData>
