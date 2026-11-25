@@ -4,6 +4,7 @@
     <author>juliusberger00</author>
     <modVersion>1.1.0</modVersion>
     <packageId>juliusberger00.pawncompatibilityglobaladjuster</packageId>
+    <url>https://github.com/jb-rimworld/pawn-compatibility-global-slider</url>
     <supportedVersions>
         <li>1.6</li>
         <li>1.7</li>
@@ -60,7 +61,8 @@ romance, love, relationships, marriage, social, bulk edit, quality of life, QoL,
 
 == TRANSPARENCY ==
 
-This mod was built with the help of Claude Code. Copyright stays with Julius Berger. The code is free for the taking, do whatever you like with it. Credit and a mention are welcome, but nobody will chase you for them.</description>
+This mod was built with the help of Claude Code. Copyright stays with Julius Berger. The code is free for the taking, do whatever you like with it. Credit and a mention are welcome, but nobody will chase you for them.
+Source: https://github.com/jb-rimworld/pawn-compatibility-global-slider (MIT).</description>
     <modDependencies>
         <li>
             <packageId>brrainz.harmony</packageId>

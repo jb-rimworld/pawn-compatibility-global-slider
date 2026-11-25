@@ -1,5 +1,7 @@
 # Pawn Compatibility Editor – Global Slider
 
+Source: https://github.com/jb-rimworld/pawn-compatibility-global-slider (MIT, see `LICENSE`).
+
 Companion mod for **Pawn Compatibility Editor** by Jomar
 (`jomar.pawncompatibilityeditor`). It adds a **global slider** on top of the
 compatibility editor dialog (the one you open from the bottom button bar).
