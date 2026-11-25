@@ -1,9 +1,8 @@
 // In-game suites for Pawn Compatibility Editor - Global Slider. Compiled ONLY into test builds (tools/jbmod passes -p:JBTests=true,
 // which defines JB_TESTS and references JB Framework's test harness). The release build has none of this and never references the framework.
 //
-// This mod does not use JB Framework. The harness finds "the mod under test" through a framework context, so test builds carry a tiny
-// stand-in context (GlobalAdjusterTestTenant) that registers nothing. It also reads three environment variables so one test build can play
-// several scenarios (the game process inherits them from the jbmod call):
+// This mod does not use JB Framework. The harness finds the suites through the mod's content pack (JBTests.props). Test builds also
+// read three environment variables so one test build can play several scenarios (the game process inherits them from the jbmod call):
 //   PCGA_TEST_GLOBALS=on:1.5:exempt   the global defaults ("new games") are set to this right after all mods are loaded
 //   PCGA_TEST_SAVEVAL=on:3.0:noexempt phase 1 of pcga.saveload puts these values into the SAVE's component before saving
 //   PCGA_TEST_ADDITION=1              after a load, check the old-save migration (a save without our component takes the global values once)
@@ -25,32 +24,29 @@ using Verse;
 
 namespace PawnCompatibilityGlobalAdjuster.Tests
 {
-    /// <summary>Stand-in framework context so the harness can find this mod's suites. Test builds only.</summary>
-    public sealed class GlobalAdjusterTestTenant : KitModBase
+    /// <summary>Test-only: sets the global defaults from PCGA_TEST_GLOBALS once startup has finished (mods and defs loaded).</summary>
+    [StaticConstructorOnStartup]
+    static class TestGlobals
     {
-        bool additionDone;
-
-        public GlobalAdjusterTestTenant(ModContentPack content) : base(content, new KitInfo
-        {
-            Name = "Pawn Compatibility Editor - Global Slider",
-            ShortId = "PCGAT",
-            Version = "test",
-        }) { }
-
-        protected override void Register(KitRegistry r) { }
-
-        protected override void OnDefsLoaded()
+        static TestGlobals()
         {
             string g = Environment.GetEnvironmentVariable("PCGA_TEST_GLOBALS");
             var s = GlobalAdjusterMod.Settings;
             if (string.IsNullOrEmpty(g) || s == null) return;
             T.ParseValues(g, out bool on, out float target, out bool exempt);
             s.autoEnabled = on; s.autoTarget = target; s.exemptLoversAndFamily = exempt;
-            Kit.Log.Info("Test", "global defaults set from PCGA_TEST_GLOBALS: " + g);
+            Log.Message("[PCGA-TEST] global defaults set from PCGA_TEST_GLOBALS: " + g);
         }
+    }
 
-        // Old-save migration check (jbmod addition: a vanilla save, made without this mod, loaded with it).
-        protected override void OnTick(int ticksGame)
+    /// <summary>Test-only: old-save migration check (jbmod addition: a vanilla save, made without this mod, loaded with it).</summary>
+    public sealed class TestAdditionCheck : GameComponent
+    {
+        bool additionDone;
+
+        public TestAdditionCheck(Game game) { }
+
+        public override void GameComponentTick()
         {
             if (additionDone || Environment.GetEnvironmentVariable("PCGA_TEST_ADDITION") != "1") return;
             additionDone = true;
@@ -70,12 +66,9 @@ namespace PawnCompatibilityGlobalAdjuster.Tests
                     errs.Add("a later change of the global default reached the save");
             }
             if (errs.Count == 0) Log.Message("[PCGA-ADDITION] PASS: the old save took the global values once (" + wantStr + ") and kept them");
-            else Kit.Log.Error("Test", "addition check failed: " + string.Join("; ", errs));
+            else Log.Error("[PCGA-TEST] addition check failed: " + string.Join("; ", errs));
         }
     }
-
-    /// <summary>Settings object of the stand-in context (the framework wants exactly one).</summary>
-    public sealed class GlobalAdjusterTestSettings : KitSettingsBase { }
 
     static class T
     {

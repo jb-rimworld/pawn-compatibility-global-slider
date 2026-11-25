@@ -32,18 +32,8 @@
         <Reference Include="0Harmony"><HintPath>$(HOME)/Library/Application Support/Steam/steamapps/workshop/content/294100/2009463077/1.7/Assemblies/0Harmony.dll</HintPath><Private>False</Private></Reference>
     </ItemGroup>
 
-    <!-- Test builds only (tools/jbmod passes -p:JBTests=true): the in-game suites in GlobalAdjusterTests.cs use JB Framework's test harness.
+    <!-- Test builds only (tools/jbmod passes -p:JBTests=true): adds JB_TESTS and the references to JB Framework's test harness.
          The release build never defines JB_TESTS and never references the framework (tools/release.py scans the DLL). -->
-    <PropertyGroup Condition="'$(JBTests)' == 'true'">
-        <DefineConstants>$(DefineConstants);JB_TESTS</DefineConstants>
-        <JBFrameworkRoot>$([MSBuild]::NormalizeDirectory('$(MSBuildProjectDirectory)/../../../JBFramework'))</JBFrameworkRoot>
-    </PropertyGroup>
-    <ItemGroup Condition="'$(JBTests)' == 'true'">
-        <Reference Include="JBFramework"><HintPath>$(JBFrameworkRoot)1.7/Assemblies/JBFramework.dll</HintPath><Private>False</Private></Reference>
-        <Reference Include="JBFramework.Testing"><HintPath>$(JBFrameworkRoot)TestMod/1.7/Assemblies/JBFramework.Testing.dll</HintPath><Private>False</Private></Reference>
-    </ItemGroup>
-    <Target Name="JBReleaseGuard" BeforeTargets="CoreCompile;BeforeBuild">
-        <Error Condition="'$(JBRelease)' == 'true' and '$(JBTests)' == 'true'" Text="Release build with JBTests=true: test code must never ship." />
-    </Target>
+    <Import Project="$(MSBuildProjectDirectory)/../../../JBFramework/build/JBTests.props" />
     <ItemGroup><Compile Remove="obj17/**" /><Compile Remove="obj/**" /></ItemGroup>
 </Project>
